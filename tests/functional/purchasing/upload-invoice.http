@@ -1,0 +1,4 @@
+POST https://localhost:44311/api/invoices
+Content-Type: application/octet-stream
+
+< files/invoice-2.pdf
