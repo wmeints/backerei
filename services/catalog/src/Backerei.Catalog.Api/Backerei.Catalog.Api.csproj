@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Backerei.Catalog.Domain\Backerei.Catalog.Domain.csproj" />
+    <ProjectReference Include="..\Backerei.Catalog.Infrastructure\Backerei.Catalog.Infrastructure.csproj" />
     <ProjectReference Include="..\Backerei.Infrastructure.Domain\Backerei.Infrastructure.Domain.csproj" />
   </ItemGroup>
 
