@@ -8,6 +8,14 @@ namespace Backerei.Catalog.Domain
     public class Category
     {
         /// <summary>
+        /// Initializes a new instance of <see cref="Category"/>
+        /// </summary>
+        private Category()
+        {
+            
+        }
+        
+        /// <summary>
         /// Gets the ID of the category.
         /// </summary>
         public int Id { get; private set; }

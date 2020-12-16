@@ -9,6 +9,14 @@ namespace Backerei.Catalog.Domain
     public class ServingSize
     {
         /// <summary>
+        /// Initializes a new instance of <see cref="ServingSize"/>
+        /// </summary>
+        private ServingSize()
+        {
+            
+        }
+        
+        /// <summary>
         /// Initializes a new instance of <see cref="ServingSize"/>.
         /// </summary>
         /// <param name="minimum">Minimum number of people to serve.</param>

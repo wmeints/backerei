@@ -42,11 +42,13 @@
         /// </summary>
         public string Name { get; }
 
+        /// <inheritdoc />
         protected bool Equals(CakeShape other)
         {
             return Id == other.Id;
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -56,9 +58,23 @@
             return Equals((CakeShape) obj);
         }
 
+
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return Id.GetHashCode();
         }
+        
+        /// <summary>
+        /// Converts a raw value into a cake shape.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static CakeShape FromRawValue(in int value) => value switch
+        {
+            1 => Round,
+            2 => Square,
+            _ => Unknown
+        };
     }
 }

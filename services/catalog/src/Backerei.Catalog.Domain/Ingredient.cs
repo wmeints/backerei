@@ -8,6 +8,14 @@ namespace Backerei.Catalog.Domain
     public class Ingredient
     {
         /// <summary>
+        /// Initializes a new instance of <see cref="Ingredient"/>
+        /// </summary>
+        private Ingredient()
+        {
+            
+        }
+        
+        /// <summary>
         /// Gets the ID of the ingredient.
         /// </summary>
         public int Id { get; private set; }

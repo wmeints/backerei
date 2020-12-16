@@ -1,4 +1,5 @@
-﻿using Backerei.Catalog.Domain;
+﻿using System.Diagnostics;
+using Backerei.Catalog.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backerei.Catalog.Infrastructure.Data
@@ -8,6 +9,14 @@ namespace Backerei.Catalog.Infrastructure.Data
     /// </summary>
     public class ApplicationDbContext: DbContext
     {
+        /// <summary>
+        /// Initializes a new instance of <see cref="ApplicationDbContext"/>
+        /// </summary>
+        /// <param name="options"></param>
+        public ApplicationDbContext(DbContextOptions options) : base(options)
+        {
+        }
+
         /// <summary>
         /// Gets or sets the cakes dataset.
         /// </summary>
@@ -43,12 +52,11 @@ namespace Backerei.Catalog.Infrastructure.Data
             // The shape is an enumeration object. We're encoding that as a numeric value.
             // We convert unknown sizes to blob shaped cakes here, since we don't know what else to do with it.
             modelBuilder.Entity<Cake>().Property(x => x.Shape).HasConversion(
-                x => x.Id, x => x switch
-                {
-                    1 => CakeShape.Round,
-                    2 => CakeShape.Square,
-                    _ => CakeShape.Unknown
-                });
+                x => x.Id, x => CakeShape.FromRawValue(x));
+
+            modelBuilder.Entity<Cake>().Property<byte[]>("Version").IsRowVersion();
+            modelBuilder.Entity<Ingredient>().Property<byte[]>("Version").IsRowVersion();
+            modelBuilder.Entity<Category>().Property<byte[]>("Version").IsRowVersion();
         }
     }
 }

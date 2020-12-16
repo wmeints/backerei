@@ -11,6 +11,14 @@ namespace Backerei.Catalog.Domain
     public class Cake
     {
         /// <summary>
+        /// Initializes a new instance of <see cref="Cake"/>
+        /// </summary>
+        private Cake()
+        {
+            
+        }
+
+        /// <summary>
         /// Gets the ID of the cake.
         /// </summary>
         public int Id { get; private set; }
