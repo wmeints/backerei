@@ -51,7 +51,7 @@ namespace Backerei.Catalog.Domain
         /// <summary>
         /// Gets the category for the cake.
         /// </summary>
-        public Category Category { get; private set; }
+        public int CategoryId { get; private set; }
 
         /// <summary>
         /// Gets the ingredients for the cake.
@@ -66,19 +66,17 @@ namespace Backerei.Catalog.Domain
         /// <param name="size">Size of the cake in cm</param>
         /// <param name="servingSize">Serving size of the cake</param>
         /// <param name="cakeShape">Shape of the cake</param>
-        /// <param name="category">Category for the cake</param>
+        /// <param name="categoryId">Category for the cake</param>
         /// <returns>Returns the new cake</returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public static Cake Create(string name, string description, int size, ServingSize servingSize,
-            CakeShape cakeShape, Category category)
+        public static Cake Create(string name, string description, int size, ServingSize servingSize, CakeShape cakeShape, int categoryId)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
             if (string.IsNullOrWhiteSpace(description)) throw new ArgumentNullException(nameof(description));
             if (size <= 0) throw new ArgumentException("Size must be greater than zero", nameof(size));
             if (servingSize == null) throw new ArgumentNullException(nameof(servingSize));
             if (cakeShape == null) throw new ArgumentNullException(nameof(cakeShape));
-            if (category == null) throw new ArgumentNullException(nameof(category));
 
             return new Cake
             {
@@ -87,7 +85,7 @@ namespace Backerei.Catalog.Domain
                 Size = size,
                 Serving = servingSize,
                 Shape = cakeShape,
-                Category = category
+                CategoryId = categoryId
             };
         }
 
@@ -99,25 +97,23 @@ namespace Backerei.Catalog.Domain
         /// <param name="size"></param>
         /// <param name="servingSize"></param>
         /// <param name="cakeShape"></param>
-        /// <param name="category"></param>
+        /// <param name="categoryId"></param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public void Update(string name, string description, int size, ServingSize servingSize, CakeShape cakeShape,
-            Category category)
+        public void Update(string name, string description, int size, ServingSize servingSize, CakeShape cakeShape, int categoryId)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
             if (string.IsNullOrWhiteSpace(description)) throw new ArgumentNullException(nameof(description));
             if (size <= 0) throw new ArgumentException("Size must be greater than zero", nameof(size));
             if (servingSize == null) throw new ArgumentNullException(nameof(servingSize));
             if (cakeShape == null) throw new ArgumentNullException(nameof(cakeShape));
-            if (category == null) throw new ArgumentNullException(nameof(category));
-
+            
             Name = name;
             Description = description;
             Size = size;
             Serving = servingSize;
             Shape = cakeShape;
-            Category = category;
+            CategoryId = categoryId;
         }
 
         /// <summary>
