@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Backerei.Catalog.Domain\Backerei.Catalog.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Migrations" />
+  </ItemGroup>
+
 </Project>

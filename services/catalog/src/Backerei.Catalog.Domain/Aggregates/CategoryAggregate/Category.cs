@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Backerei.Catalog.Domain
+namespace Backerei.Catalog.Domain.Aggregates.CategoryAggregate
 {
     /// <summary>
     /// Represents a category of cakes sold on the website. For example: birthday, wedding, christmas

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Backerei.Catalog.Domain
+namespace Backerei.Catalog.Domain.Aggregates.CakeAggregate
 {
     /// <summary>
     /// Gets thrown when an ingredient can't be found.

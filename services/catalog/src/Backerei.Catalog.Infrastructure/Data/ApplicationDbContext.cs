@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 using Backerei.Catalog.Domain;
+using Backerei.Catalog.Domain.Aggregates.CakeAggregate;
+using Backerei.Catalog.Domain.Aggregates.CategoryAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backerei.Catalog.Infrastructure.Data
@@ -47,12 +49,7 @@ namespace Backerei.Catalog.Infrastructure.Data
             
             // The serving size we encode as a sub-object of the cake table.
             // It suits value objects really well.
-            modelBuilder.Entity<Cake>().OwnsOne(x=> x.Serving);
-            
-            // The shape is an enumeration object. We're encoding that as a numeric value.
-            // We convert unknown sizes to blob shaped cakes here, since we don't know what else to do with it.
-            modelBuilder.Entity<Cake>().Property(x => x.Shape).HasConversion(
-                x => x.Id, x => CakeShape.FromRawValue(x));
+            modelBuilder.Entity<Cake>().OwnsOne(x=> x.ServingPortions);
 
             modelBuilder.Entity<Cake>().Property<byte[]>("Version").IsRowVersion();
             modelBuilder.Entity<Ingredient>().Property<byte[]>("Version").IsRowVersion();

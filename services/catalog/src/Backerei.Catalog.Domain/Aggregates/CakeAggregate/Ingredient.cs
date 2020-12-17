@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Backerei.Catalog.Domain
+namespace Backerei.Catalog.Domain.Aggregates.CakeAggregate
 {
     /// <summary>
     /// Represents an ingredient that was used in making the cake.
@@ -46,23 +46,7 @@ namespace Backerei.Catalog.Domain
         public static Ingredient Create(string name, int weight, bool isAllergen)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
-            return new Ingredient {Name = name, IsAllergen = isAllergen};
-        }
-
-        /// <summary>
-        /// Updates the details of the ingredient.
-        /// </summary>
-        /// <param name="name">Name of the ingredient.</param>
-        /// <param name="weight">Relative weight of the ingredient in the cake.</param>
-        /// <param name="isAllergen">Whether the ingredient is an allergen.</param>
-        /// <exception cref="ArgumentNullException"></exception>
-        public void Update(string name, int weight, bool isAllergen)
-        {
-            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
-
-            Name = name;
-            Weight = weight;
-            IsAllergen = isAllergen;
+            return new Ingredient {Name = name, Weight = weight, IsAllergen = isAllergen};
         }
     }
 }

@@ -1,27 +1,27 @@
 ﻿using System;
 
-namespace Backerei.Catalog.Domain
+namespace Backerei.Catalog.Domain.Aggregates.CakeAggregate
 {
     /// <summary>
     /// Defines the serving size of the cake in a range between the minimum number of
     /// people and maximum number of people being served.
     /// </summary>
-    public class ServingSize
+    public class ServingPortions
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="ServingSize"/>
+        /// Initializes a new instance of <see cref="ServingPortions"/>
         /// </summary>
-        private ServingSize()
+        private ServingPortions()
         {
             
         }
         
         /// <summary>
-        /// Initializes a new instance of <see cref="ServingSize"/>.
+        /// Initializes a new instance of <see cref="ServingPortions"/>.
         /// </summary>
         /// <param name="minimum">Minimum number of people to serve.</param>
         /// <param name="maximum">Maximum number of people to serve.</param>
-        private ServingSize(int minimum, int maximum)
+        private ServingPortions(int minimum, int maximum)
         {
             Minimum = minimum;
             Maximum = maximum;
@@ -44,16 +44,16 @@ namespace Backerei.Catalog.Domain
         /// <param name="max">Maximum value.</param>
         /// <returns>Returns the new serving size.</returns>
         /// <exception cref="ArgumentException"></exception>
-        public static ServingSize FromRange(int min, int max)
+        public static ServingPortions FromRange(int min, int max)
         {
-            if (min < 0) throw new ArgumentException("Minimum must be above zero", nameof(min));
-            if (min > max) throw new ArgumentException("Maximum must be above minimum.", nameof(max));
+            if (min <= 0) throw new ArgumentException("Minimum must be above zero", nameof(min));
+            if (min >= max) throw new ArgumentException("Maximum must be above minimum.", nameof(max));
 
-            return new ServingSize(min, max);
+            return new ServingPortions(min, max);
         }
 
         /// <inheritdoc />
-        protected bool Equals(ServingSize other)
+        protected bool Equals(ServingPortions other)
         {
             return Minimum == other.Minimum && Maximum == other.Maximum;
         }
@@ -64,7 +64,7 @@ namespace Backerei.Catalog.Domain
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((ServingSize) obj);
+            return Equals((ServingPortions) obj);
         }
 
         /// <inheritdoc />
