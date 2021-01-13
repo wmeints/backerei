@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  database:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment: 
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: '${DATABASE_PASSWORD}'
+    ports:
+      - 1433:1433
+  catalog:
+    build: services/catalog
+    ports:
+      - 3000:80
+    environment:
+      CONNECTIONSTRINGS__DEFAULTDATABASE: 'data source=database;initial catalog=backerei_catalog;user id=sa;password=${DATABASE_PASSWORD}'
+      ASPNETCORE_ENVIRONMENT: 'Development'
+  ordering:
+    build: services/ordering
+    ports:
+      - 3001:80
+    environment:
+      CONNECTIONSTRINGS__DEFAULTDATABASE: 'data source=database;initial catalog=backerei_ordering;user id=sa;password=${DATABASE_PASSWORD}'
+      ASPNETCORE_ENVIRONMENT: 'Development'
+  
